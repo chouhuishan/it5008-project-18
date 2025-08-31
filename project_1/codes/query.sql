@@ -10,5 +10,3 @@ SELECT *
 FROM restaurant.staff_cusine;
 SELECT *
 FROM restaurant.order;
-SELECT *
-FROM restaurant.order_item;
