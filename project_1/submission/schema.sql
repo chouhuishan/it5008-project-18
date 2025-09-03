@@ -23,22 +23,25 @@ CREATE TABLE IF NOT EXISTS restaurant.staff_cuisine (
     cuisine VARCHAR(100) NOT NULL REFERENCES restaurant.cuisine(name) ON UPDATE CASCADE ON DELETE RESTRICT,
     PRIMARY KEY (staff_id, cuisine)
 );
-CREATE TABLE IF NOT EXISTS restaurant.order (
+CREATE TABLE IF NOT EXISTS restaurant.orders (
     order_date DATE NOT NULL,
     order_time TIME NOT NULL,
-    order_id CHAR(11) NOT NULL,
+    order_id CHAR(11) PRIMARY KEY,
     payment_type VARCHAR(4) NOT NULL CHECK (payment_type IN ('card', 'cash')),
-    card_num CHAR(19),
+    card_num CHAR(19) NULL,
     card_type VARCHAR(50) CHECK (
         CASE
             WHEN payment_type = 'card' THEN card_type IN ('americanexpress', 'visa', 'mastercard')
             ELSE card_type IS NULL
         END
     ),
+    total_price NUMERIC(10, 2) NOT NULL CHECK (total_price > 0),
+    phone CHAR(8) NULL REFERENCES restaurant.registration(phone)
+);
+CREATE TABLE IF NOT EXISTS restaurant.orders_details (
+    order_id CHAR(11) NOT NULL REFERENCES restaurant.order(order_id),
     item VARCHAR(100) NOT NULL REFERENCES restaurant.menu(item),
-    total_price NUMERIC(10, 2),
-    phone CHAR(8) NULL REFERENCES restaurant.registration(phone),
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id)
+    price NUMERIC(6, 2) NOT NULL CHECK (price > 0),
+    staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id),
+    PRIMARY KEY (order_id, item)
 );
