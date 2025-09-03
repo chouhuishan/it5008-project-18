@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS restaurant.registration (
     phone CHAR(8) PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
-    reg_date,
-    DATE NOT NULL,
+    reg_date DATE NOT NULL,
     reg_time TIME NOT NULL
 );
 CREATE TABLE IF NOT EXISTS restaurant.staff (
