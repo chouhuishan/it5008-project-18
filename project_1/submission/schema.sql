@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS restaurant.staff (
 CREATE TABLE IF NOT EXISTS restaurant.staff_cuisine (
     staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id) ON UPDATE CASCADE ON DELETE CASCADE,
     cuisine VARCHAR(100) NOT NULL REFERENCES restaurant.cuisine(name) ON UPDATE CASCADE ON DELETE RESTRICT,
-    PRIMARY KEY (staff_id, cusine)
+    PRIMARY KEY (staff_id, cuisine)
 );
 CREATE TABLE IF NOT EXISTS restaurant.order (
     order_date DATE NOT NULL,
