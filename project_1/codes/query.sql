@@ -1,0 +1,14 @@
+SELECT *
+FROM restaurant.cusine;
+SELECT *
+FROM restaurant.menu;
+SELECT *
+FROM restaurant.registration;
+SELECT *
+FROM restaurant.staff;
+SELECT *
+FROM restaurant.staff_cusine;
+SELECT *
+FROM restaurant.order;
+SELECT *
+FROM restaurant.order_item;
