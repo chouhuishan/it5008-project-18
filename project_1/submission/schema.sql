@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS restaurant.orders (
     phone CHAR(8) NULL REFERENCES restaurant.registration(phone)
 );
 CREATE TABLE IF NOT EXISTS restaurant.orders_details (
-    order_id CHAR(11) NOT NULL REFERENCES restaurant.order(order_id),
+    order_id CHAR(11) NOT NULL REFERENCES restaurant.orders(order_id),
     item VARCHAR(100) NOT NULL REFERENCES restaurant.menu(item),
     price NUMERIC(6, 2) NOT NULL CHECK (price > 0),
     staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id),

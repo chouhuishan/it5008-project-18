@@ -1,6 +1,4 @@
 -- L1 : Creating and Populating Tables with Constraints
-
-
 /*******************
  
  Original schema as per AppStoreSchema.sql
@@ -129,12 +127,14 @@ CREATE TABLE IF NOT EXISTS app_store.games(
 );
 SET search_path TO app_store;
 INSERT INTO games (name, version)
-VALUES ('Aerified2', '1.0') --> INSERTION FAIL : Price is not stated, leading to an implicit null, but price cannot be null as per schema above
+VALUES ('Aerified2', '1.0');
+--> INSERTION FAIL : Price is not stated, leading to an implicit null, but price cannot be null as per schema above
 SET search_path TO app_store;
 INSERT INTO games (name, version)
-VALUES ('Aerified2', '1.0', NULL) --> INSERTION FAIL
-    -- This table varies from the one above, NOTE: Addition of DEFAULT 1.00
-    CREATE SCHEMA IF NOT EXISTS app_store;
+VALUES ('Aerified2', '1.0', NULL);
+--> INSERTION FAIL
+-- This table varies from the one above, NOTE: Addition of DEFAULT 1.00
+CREATE SCHEMA IF NOT EXISTS app_store;
 SET search_path TO app_store;
 CREATE TABLE IF NOT EXISTS app_store.games(
     -- Games TABLE 4
@@ -145,10 +145,11 @@ CREATE TABLE IF NOT EXISTS app_store.games(
 );
 SET search_path TO app_store;
 INSERT INTO games (name, version)
-VALUES ('Aerified2', '1.0') --> INSERTION SUCCESS, despite price not stated, price will be defaulted to 1.00
+VALUES ('Aerified2', '1.0');
+--> INSERTION SUCCESS, despite price not stated, price will be defaulted to 1.00
 SET search_path TO app_store;
 INSERT INTO games (name, version)
-VALUES ('Aerified2', '1.0', NULL) CREATE SCHEMA IF NOT EXISTS app_store;
+VALUES ('Aerified2', '1.0', NULL);
 -- This table varies from original, NOTE: CHECK constraint added to check price > 0
 CREATE SCHEMA IF NOT EXISTS app_store;
 SET search_path TO app_store;
@@ -182,18 +183,22 @@ CREATE TABLE IF NOT EXISTS app_store.downloads (
 );
 SET search_path TO app_store;
 INSERT INTO downloads
-VALUES ('Adam1983', 'Aerified2', '1.0') -- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified2', '1.0')
+VALUES ('Adam1983', 'Aerified2', '1.0');
+-- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified2', '1.0')
 SET search_path TO app_store;
 INSERT INTO downloads
-VALUES ('Carole89', 'Aerified', '1.1') -- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified', '1.0')
+VALUES ('Carole89', 'Aerified', '1.1');
+-- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified', '1.0')
 SET search_path TO app_store;
 INSERT INTO downloads
-VALUES (NULL, 'Aerified', '1.0') -- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified2', '1.0')
+VALUES (NULL, 'Aerified', '1.0');
+-- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified2', '1.0')
 SET search_path TO app_store;
 INSERT INTO downloads
-VALUES ('Carole89', NULL, '1.1') -- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified', '1.0')
-    -- This table is different from above, NOTE: Usage of CASCADE
-    CREATE SCHEMA IF NOT EXISTS app_store;
+VALUES ('Carole89', NULL, '1.1');
+-- INSERTION FAIL, no matching row in app_store.games with this pair ('Aerified', '1.0')
+-- This table is different from above, NOTE: Usage of CASCADE
+CREATE SCHEMA IF NOT EXISTS app_store;
 SET search_path TO app_store;
 CREATE TABLE IF NOT EXISTS app_store.downloads (
     -- Downloads TABLE 3

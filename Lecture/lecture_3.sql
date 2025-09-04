@@ -31,11 +31,13 @@ WHERE name = 'Aerified';
 SELECT c.country,
     COUNT(*)
 FROM app_store.customers c
-GROUP BY c.country -- ERROR : column 'c.country' need to appear in GROUP BY clause
+GROUP BY c.country;
+-- ERROR : column 'c.country' need to appear in GROUP BY clause
 SELECT c.country,
     COUNT(*)
-FROM app_store.customers c -- WHERE : Groups are formed logically after the rows are filtered out by the WHERE clause
-    -- Filter out customers in different countries with dob after constraints stated
+FROM app_store.customers c;
+-- WHERE : Groups are formed logically after the rows are filtered out by the WHERE clause
+-- Filter out customers in different countries with dob after constraints stated
 SELECT c.country,
     COUNT(*)
 FROM app_store.customers c
@@ -55,7 +57,8 @@ WHERE c.customerid = d.customerid
     and d.version = g.version
 GROUP BY c.customerid,
     c.first_name,
-    c.last_name -- NOTE : This is bad practice - Query works because first_name and last_name are unique
+    c.last_name;
+-- NOTE : This is bad practice - Query works because first_name and last_name are unique
 SELECT c.customerid,
     c.first_name,
     c.last_name,
@@ -113,13 +116,15 @@ ORDER BY regyear ASC,
 SELECT c.country
 FROM app_store.customers c
 WHERE COUNT(*) >= 100
-GROUP BY c.country -- Cannot have WHERE W GROUP BY - SOLUTION : GROUP BY & HAVING
-    -- Find the number of countries with more than 1000 customers
+GROUP BY c.country;
+-- Cannot have WHERE W GROUP BY - SOLUTION : GROUP BY & HAVING
+-- Find the number of countries with more than 1000 customers
 SELECT c.country
 FROM app_store.customers c
 GROUP BY c.country
-HAVING COUNT(*) >= 100 -- INNER JOIN : Combine rows from two or more tables based on a related column between them. 
-    -- It returns only the rows where there is a match in the specified join condition in both tables.
+HAVING COUNT(*) >= 100;
+-- INNER JOIN : Combine rows from two or more tables based on a related column between them. 
+-- It returns only the rows where there is a match in the specified join condition in both tables.
 SELECT *
 FROM app_store.customers c
     INNER JOIN app_store.downloads d ON d.customerid = c.customerid
@@ -162,14 +167,16 @@ FROM app_store.customers c
 SELECT *
 FROM app_store.customers c,
     app_store.downloads d
-WHERE c.customerid <> d.customerid -- customers who did not download the games are padded with NULL
+WHERE c.customerid <> d.customerid;
+-- Customers who did not download the games are padded with NULL
 SELECT c.customerid,
     c.email,
     d.customerid,
     d.name,
     d.version
 FROM app_store.customers c
-    LEFT OUTER JOIN app_store.downloads d ON c.customerid = d.customerid -- Games that are not downloaded are combined with NULL values to replace the missing values for the columns of the downloads table
+    LEFT OUTER JOIN app_store.downloads d ON c.customerid = d.customerid;
+-- Games that are not downloaded are combined with NULL values to replace the missing values for the columns of the downloads table
 SELECT *
 FROM app_store.downloads d
     RIGHT OUTER JOIN app_store.games g ON g.name = d.name
@@ -188,7 +195,7 @@ WHERE g.version = d.version;
 SELECT c.customerid
 FROM app_store.customers c
     LEFT OUTER JOIN app_store.downloads d ON c.customerid = d.customerid
-WHERE d.customerid IS NULL
+WHERE d.customerid IS NULL;
 SELECT c.customerid
 FROM app_store.customers c
     LEFT OUTER JOIN app_store.downloads d ON c.customerid = d.customerid
@@ -223,7 +230,8 @@ INTERSECT
 SELECT d.customerid
 FROM app_store.downloads d
 WHERE d.name = 'Aerified'
-    AND d.version = '2.0' -- EXCEPT: Find customers who downloaded version 1.0 but not version 2.0
+    AND d.version = '2.0';
+-- EXCEPT: Find customers who downloaded version 1.0 but not version 2.0
 SELECT d.customerid
 FROM app_store.downloads d
 WHERE d.name = 'Aerified'
@@ -232,4 +240,4 @@ EXCEPT
 SELECT d.customerid
 FROM app_store.downloads d
 WHERE d.name = 'Aerified'
-    AND d.version = '2.0'
+    AND d.version = '2.0';

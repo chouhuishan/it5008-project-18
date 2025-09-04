@@ -3,7 +3,8 @@
 SELECT first_name,
     last_name
 FROM app_store.customers
-WHERE country = 'Singapore' -- Get all the columns as per Schema --
+WHERE country = 'Singapore';
+-- Get all the columns as per Schema --
 SELECT first_name,
     last_name,
     email,
@@ -11,35 +12,44 @@ SELECT first_name,
     since,
     customerid,
     country
-FROM app_store.customers -- SHORTCUT: Same as above--
+FROM app_store.customers;
+-- SHORTCUT: Same as above-- 
 Select *
-FROM app_store.customers -- Gives the columns of the name of the games, and the respective versions
+FROM app_store.customers;
+-- Gives the columns of the name of the games, and the respective versions
 SELECT name,
     version
-FROM app_store.downloads -- Same as above, but the name and version in alphabetical and ascending order 
+FROM app_store.downloads;
+-- Same as above, but the name and version in alphabetical and ascending order 
 SELECT name,
     version
 FROM app_store.downloads
 ORDER BY name,
-    version -- Varies slightly different, as the names will be in alphabetical order, but version will not be arranged chronologically
+    version;
+-- Varies slightly different, as the names will be in alphabetical order, but version will not be arranged chronologically
 SELECT name,
     version
 FROM app_store.downloads
-ORDER BY name -- Price will be arranged in ascending order
+ORDER BY name;
+-- Price will be arranged in ascending order
 SELECT name,
     version
 FROM app_store.games
-ORDER BY price ASC -- DISTINCT is used to print distinct (unique) rows
+ORDER BY price ASC;
+-- DISTINCT is used to print distinct (unique) rows
 SELECT DISTINCT name,
     version
-FROM app_store.downloads -- Sort distinct names in ascending order
+FROM app_store.downloads;
+-- Sort distinct names in ascending order
 SELECT DISTINCT name
 FROM app_store.games
-ORDER BY name ASC -- SELECT FAIL : ORDER BY expression (price) need to appear in SELECT list
+ORDER BY name ASC;
+-- SELECT FAIL : ORDER BY expression (price) need to appear in SELECT list
 SELECT DISTINCT name,
     version
 FROM app_store.games
-ORDER BY price ASC -- WHERE :  Filter rows on Boolean conditions (AND/OR/NOT/IN/BETWEEN..AND/Comparison operators; > < >= <=)
+ORDER BY price ASC;
+-- WHERE :  Filter rows on Boolean conditions (AND/OR/NOT/IN/BETWEEN..AND/Comparison operators; > < >= <=)
 SELECT first_name,
     last_name
 FROM app_store.customers
@@ -48,8 +58,9 @@ WHERE country IN ('Singapore', 'Indonesia')
         dob BETWEEN '2000-01-01' AND '2000-12-01'
         OR since >= '2016-12-01'
     )
-    AND last_name LIKE 'B%' -- Filter out customers from SG/INDO, borned between aboved dates, with last names who start with B
-    -- Shows the column of all the prices of each game (even showing duplicates), in ascending order
+    AND last_name LIKE 'B%';
+-- Filter out customers from SG/INDO, borned between aboved dates, with last names who start with B
+-- Shows the column of all the prices of each game (even showing duplicates), in ascending order
 SELECT price
 FROM app_store.games
 ORDER BY price ASC;
@@ -79,7 +90,8 @@ SELECT name || ' ' || version,
         WHEN price * 0.09 >= 0.3 THEN ROUND(price * 1.09, 2)
         ELSE price
     END AS price
-FROM app_store.games -- Filter name of games that are version 1.0 or 1.1
+FROM app_store.games;
+-- Filter name of games that are version 1.0 or 1.1
 SELECT name
 FROM app_store.games
 WHERE (
@@ -89,21 +101,25 @@ WHERE (
 -- Same as above
 SELECT name
 FROM app_store.games
-WHERE version IN ('1.0', '1.1') -- <> operator : NOT EQUAL TO -> results are same as above
+WHERE version IN ('1.0', '1.1');
+-- <> operator : NOT EQUAL TO -> results are same as above
 SELECT name
 FROM app_store.games
 WHERE NOT (
         version <> '1.0'
         AND version <> '1.1'
-    ) --
+    );
+--
 SELECT *
 FROM app_store.customers,
     app_store.downloads,
-    app_store.games -- CROSS JOIN : Combines all the columns and possible combination of the rows of the three tables
+    app_store.games;
+-- CROSS JOIN : Combines all the columns and possible combination of the rows of the three tables
 SELECT *
 FROM app_store.customers
     CROSS JOIN app_store.downloads
-    CROSS JOIN app_store.games -- Meaningful joins : Print customers who downloaded a game
+    CROSS JOIN app_store.games;
+-- Meaningful joins : Print customers who downloaded a game
 SELECT *
 FROM app_store.customers c,
     app_store.downloads d,
