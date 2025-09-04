@@ -41,7 +41,5 @@ CREATE TABLE IF NOT EXISTS restaurant.orders (
 CREATE TABLE IF NOT EXISTS restaurant.orders_details (
     order_id CHAR(11) NOT NULL REFERENCES restaurant.orders(order_id),
     item VARCHAR(100) NOT NULL REFERENCES restaurant.menu(item),
-    price NUMERIC(6, 2) NOT NULL CHECK (price > 0),
-    staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id),
-    PRIMARY KEY (order_id, item)
+    staff_id VARCHAR(8) NOT NULL REFERENCES restaurant.staff(staff_id)
 );
