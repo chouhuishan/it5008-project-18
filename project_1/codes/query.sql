@@ -1,5 +1,5 @@
 SELECT *
-FROM restaurant.cusine;
+FROM restaurant.cuisine;
 SELECT *
 FROM restaurant.menu;
 SELECT *
@@ -7,8 +7,8 @@ FROM restaurant.registration;
 SELECT *
 FROM restaurant.staff;
 SELECT *
-FROM restaurant.staff_cusine;
+FROM restaurant.staff_cuisine;
 SELECT *
-FROM restaurant.order;
+FROM restaurant.orders;
 SELECT *
-FROM restaurant.order_item;
+FROM restaurant.orders_details;

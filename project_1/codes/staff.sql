@@ -1,4 +1,4 @@
-TRUNCATE TABLE restaurant.staff;
+-- TRUNCATE TABLE restaurant.staff;
 INSERT INTO restaurant.staff
 VALUES ('STAFF-01', 'Kat');
 INSERT INTO restaurant.staff

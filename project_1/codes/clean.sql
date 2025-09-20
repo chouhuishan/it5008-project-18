@@ -1,9 +1,8 @@
-DROP TABLE IF EXISTS restaurant.cusine;
-DROP TABLE IF EXISTS restaurant.menu;
-DROP TABLE IF EXISTS restaurant.registration;
+DROP TABLE IF EXISTS restaurant.orders_details;
+DROP TABLE IF EXISTS restaurant.orders;
+DROP TABLE IF EXISTS restaurant.staff_cuisine;
 DROP TABLE IF EXISTS restaurant.staff;
-DROP TABLE IF EXISTS restaurant.staff_cusine;
-DROP TABLE IF EXISTS restaurant.order;
-DROP TABLE IF EXISTS restaurant.per_order;
-DROP TABLE IF EXISTS restaurant.order_item;
-DROP SCHEMA IF EXIST restaurant;
+DROP TABLE IF EXISTS restaurant.registration;
+DROP TABLE IF EXISTS restaurant.menu;
+DROP TABLE IF EXISTS restaurant.cuisine;
+DROP SCHEMA IF EXISTS restaurant;
